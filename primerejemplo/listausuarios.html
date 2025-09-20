@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Probando</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+
+<input type="button" value="LISTAR USUARIOS" onclick="INICIAR();">
+<div id="mostrar_mensaje"></div>
+
+<script>
+    function INICIAR()
+    {
+        var parametros = 
+        {
+            'nombre' : "SENATI",
+            'apellido' : "SOFTWARE",
+            'correo' : "ejemplo@gmail.com"
+        };
+
+        $.ajax({
+            data: parametros,
+            url: 'codigo.php',
+            type: 'POST',
+
+            beforeSend: function()
+            {
+                $('#mostrar_mensaje').html("Mensaje antes de Enviar");
+            },
+
+            success: function(mensaje) {
+                console.log(mensaje);  // Esto mostrará el mensaje de respuesta en la consola
+                $('#mostrar_mensaje').html(mensaje);
+            }
+
+        });
+    }
+</script>
+
+</body>
+</html>
